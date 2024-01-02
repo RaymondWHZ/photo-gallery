@@ -2,7 +2,12 @@
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				lekton: ['Lekton', 'sans-serif'],
+				noto: ['Noto Sans', 'sans-serif']
+			}
+		}
 	},
 	plugins: []
 };

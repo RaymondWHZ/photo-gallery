@@ -4,51 +4,16 @@
 	import './styles.css';
 </script>
 
-<div class="app">
-	<Header />
+<div class="px-40 h-[100vh] flex flex-row justify-center items-stretch">
+	<div class="flex flex-col grow max-w-[1200px]">
+		<Header />
 
-	<main>
-		<slot />
-	</main>
+		<main class="grow">
+			<slot />
+		</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
+		<footer>
+			<p class="text-gray-400 text-xs py-10">© 2023 Raymond Wu. All rights reserved. Applies to all contents.</p>
+		</footer>
+	</div>
 </div>
-
-<style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
-</style>

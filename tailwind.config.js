@@ -5,7 +5,8 @@ export default {
 		extend: {
 			fontFamily: {
 				lekton: ['Lekton', 'sans-serif'],
-				noto: ['Noto Sans', 'sans-serif']
+				noto: ['Noto Sans', 'sans-serif'],
+				'reenie-beanie': ['Reenie Beanie', 'cursive']
 			}
 		}
 	},

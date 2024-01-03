@@ -8,17 +8,8 @@
 
 	<div class="flex-grow"></div>
 
-	<a href="/under-construction" class="text-sm">
-		Recent
-	</a>
-	<a href="/under-construction" class="text-sm">
-		City
-	</a>
-	<a href="/under-construction" class="text-sm">
-		Structure
-	</a>
-	<a href="/under-construction" class="text-sm">
-		Nature
+	<a href="/timeline" class="text-sm">
+		Timeline
 	</a>
 
 	<div class="border border-black text-sm h-[1.4em]"></div>

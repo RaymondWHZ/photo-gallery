@@ -37,6 +37,20 @@ export function fetchAllWorks(): Promise<WorkOverview[]> {
 	`);
 }
 
+export function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
+	return client.fetch(`
+		*[_type == 'work'] {
+			_id, display,
+			"imageUrl": image.asset->url,
+			title, shutter, aperture, iso,
+			description, date,
+			"locationName": location->name,
+			"deviceName": device->name,
+			"lensName": lens->name
+		} | order(date desc)
+	`);
+}
+
 export interface AboutInfo {
 	title: string;
 	description: string;

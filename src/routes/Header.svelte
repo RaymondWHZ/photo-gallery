@@ -2,7 +2,7 @@
 </script>
 
 <header class="flex flex-row items-center py-8 gap-8">
-	<a href="/" class="font-lekton text-xl">
+	<a href="/" class="font-lekton text-xl tracking-wider">
 		Raymond's Works
 	</a>
 

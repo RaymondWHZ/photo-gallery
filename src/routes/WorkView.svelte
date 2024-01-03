@@ -6,7 +6,7 @@
 
 <div class="flex flex-col justify-center items-center h-full">
 	{#if work.display === 'top'}
-		<div class="flex flex-col items-start w-full gap-6">
+		<div class="flex flex-col items-start w-full gap-10">
 			<div class="w-full">
 				<img src={work.imageUrl} alt={work.title} />
 			</div>

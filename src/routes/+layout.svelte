@@ -9,7 +9,7 @@
 		<Header />
 	</div>
 
-	<main class="-mx-40 grow">
+	<main class="-mx-40 grow w-screen">
 		<slot />
 	</main>
 

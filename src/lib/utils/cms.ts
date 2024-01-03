@@ -35,3 +35,18 @@ export function fetchAllWorks(): Promise<WorkOverview[]> {
 		}
 	`);
 }
+
+export interface AboutInfo {
+	title: string;
+	description: string;
+	quoteIntro: string;
+	quote: string;
+}
+
+export function fetchAboutInfo(): Promise<AboutInfo> {
+	return client.fetch(`
+		*[_type == 'about'] {
+			title, description, quoteIntro, quote
+		}[0]
+	`);
+}

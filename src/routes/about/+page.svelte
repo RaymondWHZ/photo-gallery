@@ -4,7 +4,6 @@
 
 <svelte:head>
 	<title>About</title>
-	<meta name="description" content="About this app" />
 </svelte:head>
 
 <div class="h-full w-full px-40 flex flex-row items-stretch justify-center py-20">

@@ -8,16 +8,16 @@
 
 	<div class="flex-grow"></div>
 
-	<a href="/about" class="text-sm">
+	<a href="/under-construction" class="text-sm">
 		Recent
 	</a>
-	<a href="/about" class="text-sm">
+	<a href="/under-construction" class="text-sm">
 		City
 	</a>
-	<a href="/about" class="text-sm">
+	<a href="/under-construction" class="text-sm">
 		Structure
 	</a>
-	<a href="/about" class="text-sm">
+	<a href="/under-construction" class="text-sm">
 		Nature
 	</a>
 

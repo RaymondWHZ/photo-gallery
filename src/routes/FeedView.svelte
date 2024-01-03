@@ -34,10 +34,10 @@
 />
 <svelte:head>
 	{#if index > 0}
-		<link rel="prefetch" as="image" href={feed[index - 1].imageUrl} />
+		<link rel="preload" as="image" href={feed[index - 1].imageUrl} />
 	{/if}
 	{#if index < feed.length - 1}
-		<link rel="prefetch" as="image" href={feed[index + 1].imageUrl} />
+		<link rel="preload" as="image" href={feed[index + 1].imageUrl} />
 	{/if}
 </svelte:head>
 <div

@@ -9,6 +9,6 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section class="h-full">
+<section class="h-full w-screen">
 	<FeedView feed={data.feed}/>
 </section>

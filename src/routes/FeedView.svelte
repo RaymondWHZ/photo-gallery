@@ -32,6 +32,14 @@
 		if (e.key === 'ArrowLeft' && index > 0) index--;
 	}}
 />
+<svelte:head>
+	{#if index > 0}
+		<link rel="preload" as="image" href={feed[index - 1].imageUrl} />
+	{/if}
+	{#if index < feed.length - 1}
+		<link rel="preload" as="image" href={feed[index + 1].imageUrl} />
+	{/if}
+</svelte:head>
 <div
 	class="h-full w-full flex flex-col items-center px-40"
 	role="application"

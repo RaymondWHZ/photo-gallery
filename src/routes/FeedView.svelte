@@ -1,6 +1,7 @@
 <script lang="ts">
 	import WorkView from './WorkView.svelte';
 	import type { WorkOverview } from '$lib/utils/cms';
+	import { onMount } from 'svelte';
 
 	export let statusDescription: string;
 	export let feed: WorkOverview[];
@@ -11,6 +12,13 @@
 	let innerWidth: number;
 	let pageX = 0;
 	let pageY = 0;
+
+	let touchScreen = false;
+	onMount(() => {
+		if ('ontouchstart' in window) {
+			touchScreen = true;
+		}
+	});
 
 	$: hasNext = index < feed.length - 1;
 	$: hasPrev = index > 0;
@@ -55,11 +63,50 @@
 	on:mouseenter={() => mouseIn = true}
 	on:mouseleave={() => mouseIn = false}
 >
+	<div class="w-full flex flex-col items-start gap-1">
+		{#if touchScreen}
+			{#if mode === 'feed'}
+				{#if hasNext}
+					<h1
+						class="bg-black text-white text-xs p-1"
+					>
+						CLICK RIGHT HALF TO VIEW NEXT
+					</h1>
+				{:else}
+					<h1
+						class="bg-black text-white text-xs p-1 opacity-40"
+					>
+						YOU'VE REACHED THE END!
+					</h1>
+				{/if}
+				{#if hasPrev}
+					<h1
+						class="bg-black text-white text-xs p-1"
+					>
+						CLICK LEFT HALF TO VIEW PREVIOUS
+					</h1>
+				{:else}
+					<h1
+						class="bg-black text-white text-xs p-1 opacity-40"
+					>
+						NO PREVIOUS
+					</h1>
+				{/if}
+			{/if}
+			{#if history.length > 0 && mode === 'single'}
+				<h1
+					class="bg-black text-white text-xs p-1"
+				>
+					CLICK ANYWHERE TO RETURN
+				</h1>
+			{/if}
+		{/if}
+	</div>
 	<div class="h-full w-full max-w-[1200px]">
 		<WorkView {statusDescription} work={feed[index]} />
 	</div>
 </div>
-{#if mouseIn}
+{#if !touchScreen && mouseIn}
 	{#if mode === 'feed'}
 		{#if mouseInNext}
 			{#if hasNext}

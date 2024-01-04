@@ -5,6 +5,7 @@
 </script>
 
 <svelte:head>
+	<title>Timeline</title>
 	{#if prefetchImageUrl}
 		<link rel="preload" as="image" href={prefetchImageUrl} />
 	{/if}

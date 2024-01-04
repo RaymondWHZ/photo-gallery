@@ -5,6 +5,10 @@
 	$: feed = [data.work];
 </script>
 
+<svelte:head>
+	<title>{data.work.title}</title>
+</svelte:head>
+
 <section class="h-full w-screen">
 	<FeedView statusDescription="" {feed} mode="single"/>
 </section>

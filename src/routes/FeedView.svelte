@@ -63,8 +63,8 @@
 	on:mouseenter={() => mouseIn = true}
 	on:mouseleave={() => mouseIn = false}
 >
-	<div class="w-full flex flex-col items-start gap-1">
-		{#if touchScreen}
+	{#if touchScreen}
+		<div class="w-full flex flex-col items-start gap-1 max-w-[1200px] mb-8">
 			{#if mode === 'feed'}
 				{#if hasNext}
 					<h1
@@ -100,8 +100,8 @@
 					CLICK ANYWHERE TO RETURN
 				</h1>
 			{/if}
-		{/if}
-	</div>
+		</div>
+	{/if}
 	<div class="h-full w-full max-w-[1200px]">
 		<WorkView {statusDescription} work={feed[index]} />
 	</div>

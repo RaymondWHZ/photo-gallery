@@ -6,13 +6,35 @@
 </script>
 
 {#key work._id}
-	<div class="flex flex-col justify-center items-center h-full">
+	<div class="flex flex-col justify-center items-center h-full md:hidden">
+		<div class="flex flex-col items-start w-full gap-10">
+			<div class="w-full">
+				<img src={work.imageUrl} alt={work.title} />
+			</div>
+			<div class="flex flex-col items-start gap-3">
+				{#if statusDescription}
+					<p class="text-xs font-light text-gray-500">{statusDescription}</p>
+				{/if}
+				<h2 class="text-3xl">{work.title}</h2>
+				<h3>{work.shutter} f{work.aperture} {work.iso}</h3>
+				<p class="text-xs font-light text-gray-500">{work.description}</p>
+				<p class="text-xs font-light italic text-gray-500">
+					Shot on {work.date} at {work.locationName} <br/>
+					with {work.deviceName} {#if work.lensName}+ {work.lensName}{/if}
+				</p>
+				<span class="text-3xl font-reenie-beanie">
+					Raymond Wu
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="flex flex-col justify-center items-center h-full max-md:hidden">
 		{#if work.display === 'top'}
 			<div class="flex flex-col items-start w-full gap-10">
 				<div class="w-full">
 					<img src={work.imageUrl} alt={work.title} />
 				</div>
-				<div class="w-[400px] flex flex-col items-start gap-3">
+				<div class="w-[500px] flex flex-col items-start gap-3">
 					{#if statusDescription}
 						<p class="text-xs font-light text-gray-500">{statusDescription}</p>
 					{/if}
@@ -32,7 +54,7 @@
 			</div>
 		{/if}
 		{#if work.display === 'left'}
-			<div class="flex flex-row items-end w-full gap-16">
+			<div class="flex flex-row items-end w-full gap-8 xl:gap-16">
 				<div class="shrink">
 					<img src={work.imageUrl} alt={work.title} />
 				</div>
@@ -53,8 +75,8 @@
 				</div>
 			</div>
 		{/if}
-		{#if work.display === 'right'}
-			<div class="flex flex-row items-end w-full gap-16">
+		{#if work.display === 'right' || work.display === 'middle'}
+			<div class={`flex flex-row items-end w-full gap-2 xl:gap-16 ${work.display === 'middle' ? 'xl:hidden' : ''}`}>
 				<div class="flex flex-col items-start gap-3">
 					{#if statusDescription}
 						<p class="text-xs font-light text-gray-500">{statusDescription}</p>
@@ -78,7 +100,7 @@
 			</div>
 		{/if}
 		{#if work.display === 'middle'}
-			<div class="flex flex-row items-start w-full gap-16">
+			<div class="flex flex-row items-start w-full gap-8 2xl:gap-16 max-xl:hidden">
 				<div class="flex flex-col items-start gap-3">
 					{#if statusDescription}
 						<p class="text-xs font-light text-gray-500">{statusDescription}</p>

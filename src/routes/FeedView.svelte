@@ -3,6 +3,7 @@
 	import type { WorkOverview } from '$lib/utils/cms';
 
 	export let feed: WorkOverview[];
+	export let mode: 'feed' | 'single' = 'feed';
 
 	let index = 0;
 
@@ -20,12 +21,19 @@
 </script>
 
 <svelte:window
-	bind:innerWidth on:mousemove={e => ({ pageX, pageY } = e)}
+	bind:innerWidth
+	on:mouseover={e => ({ pageX, pageY } = e)}
+	on:mousemove={e => ({ pageX, pageY } = e)}
 	on:mousedown={() => mouseDownTime = Date.now()}
 	on:mouseup={() => {
 		if (!mouseIn || Date.now() - mouseDownTime > 200) return;
-		if (mouseInNext && hasNext) index++;
-		if (!mouseInNext && hasPrev) index--;
+		if (mode === 'feed') {
+			if (mouseInNext && hasNext) index++;
+			if (!mouseInNext && hasPrev) index--;
+		}
+		if (mode === 'single') {
+			history.back();
+		}
 	}}
 	on:keyup={(e) => {
 		if (e.key === 'ArrowRight' && index < feed.length - 1) index++;
@@ -51,37 +59,47 @@
 	</div>
 </div>
 {#if mouseIn}
-	{#if mouseInNext}
-		{#if hasNext}
-			<h1
-				class="bg-black text-white text-xs p-1"
-				style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
-			>
-				CLICK HERE TO VIEW NEXT
-			</h1>
+	{#if mode === 'feed'}
+		{#if mouseInNext}
+			{#if hasNext}
+				<h1
+					class="bg-black text-white text-xs p-1"
+					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+				>
+					CLICK HERE TO VIEW NEXT
+				</h1>
+			{:else}
+				<h1
+					class="bg-black text-white text-xs p-1 opacity-40"
+					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+				>
+					YOU'VE REACHED THE END!
+				</h1>
+			{/if}
 		{:else}
-			<h1
-				class="bg-black text-white text-xs p-1 opacity-40"
-				style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
-			>
-				YOU'VE REACHED THE END!
-			</h1>
+			{#if hasPrev}
+				<h1
+					class="bg-black text-white text-xs p-1"
+					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+				>
+					CLICK HERE TO VIEW PREVIOUS
+				</h1>
+			{:else}
+				<h1
+					class="bg-black text-white text-xs p-1 opacity-40"
+					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+				>
+					NO PREVIOUS
+				</h1>
+			{/if}
 		{/if}
-	{:else}
-		{#if hasPrev}
-			<h1
-				class="bg-black text-white text-xs p-1"
-				style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
-			>
-				CLICK HERE TO VIEW PREVIOUS
-			</h1>
-		{:else}
-			<h1
-				class="bg-black text-white text-xs p-1 opacity-40"
-				style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
-			>
-				NO PREVIOUS
-			</h1>
 	{/if}
+	{#if history.length > 0 && mode === 'single'}
+		<h1
+			class="bg-black text-white text-xs p-1"
+			style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
+		>
+			CLICK ANYWHERE TO RETURN
+		</h1>
 	{/if}
 {/if}

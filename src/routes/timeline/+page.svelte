@@ -1,6 +1,14 @@
-<script>
+<script lang="ts">
 	export let data;
+
+	let prefetchImageUrl: string = '';
 </script>
+
+<svelte:head>
+	{#if prefetchImageUrl}
+		<link rel="preload" as="image" href={prefetchImageUrl} />
+	{/if}
+</svelte:head>
 
 <div class="h-full w-full px-40 flex flex-row items-stretch justify-center py-20">
 	<div class="h-full grow max-w-[1200px] flex flex-col items-stretch justify-start">
@@ -12,7 +20,9 @@
 				{#each data.timeline[monthYear] as image}
 					<div>
 						<span class="text-sm text-gray-500">{image.date.split('-')[2]}</span>
-						<img class="h-[250px]" src={image.imageUrl + "?h=1000"} alt={image.title} />
+						<a href={"/" + image._id} on:mouseenter={() => prefetchImageUrl = image.imageUrl}>
+							<img class="h-[250px]" src={image.imageUrl + "?h=1000"} alt={image.title} />
+						</a>
 					</div>
 				{/each}
 			</div>

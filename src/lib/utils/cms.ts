@@ -51,6 +51,25 @@ export function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
 	`);
 }
 
+export function fetchSingleWork(id: string): Promise<WorkOverview> {
+	return client.fetch(
+		`
+		*[_type == 'work' && _id == $id] {
+			_id, display,
+			"imageUrl": image.asset->url,
+			title, shutter, aperture, iso,
+			description, date,
+			"locationName": location->name,
+			"deviceName": device->name,
+			"lensName": lens->name
+		}[0]
+	`,
+		{
+			id
+		}
+	);
+}
+
 export interface AboutInfo {
 	title: string;
 	description: string;

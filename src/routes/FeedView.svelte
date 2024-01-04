@@ -50,7 +50,7 @@
 	{/if}
 </svelte:head>
 <div
-	class="h-full w-full flex flex-col items-center px-40"
+	class="h-full w-full flex flex-col items-center px-4 sm:px-10 lg:px-40"
 	role="application"
 	on:mouseenter={() => mouseIn = true}
 	on:mouseleave={() => mouseIn = false}

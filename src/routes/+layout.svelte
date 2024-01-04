@@ -4,12 +4,12 @@
 	import './styles.css';
 </script>
 
-<div class="px-40 h-[100vh] flex flex-col justify-stretch items-center">
+<div class="px-4 sm:px-10 lg:px-40 h-[100vh] flex flex-col justify-stretch items-center">
 	<div class="w-full max-w-[1200px]">
 		<Header />
 	</div>
 
-	<main class="-mx-40 grow w-screen">
+	<main class="-px-4 sm:-px-10 lg:-mx-40 grow w-screen">
 		<slot />
 	</main>
 

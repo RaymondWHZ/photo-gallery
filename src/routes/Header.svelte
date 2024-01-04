@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<header class="flex flex-row items-center py-8 gap-8">
+<header class="flex flex-row items-center py-8 gap-2 sm:gap-4 lg:gap-8">
 	<a href="/" class="font-lekton text-xl tracking-wider">
 		Raymond's Works
 	</a>

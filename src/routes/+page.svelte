@@ -10,5 +10,5 @@
 </svelte:head>
 
 <section class="h-full w-screen">
-	<FeedView feed={data.feed}/>
+	<FeedView statusDescription="Randomly chosen to be displayed" feed={data.feed}/>
 </section>

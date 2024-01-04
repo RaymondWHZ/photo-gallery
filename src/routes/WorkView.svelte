@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { WorkOverview } from '$lib/utils/cms';
 
+	export let statusDescription: string;
 	export let work: WorkOverview;
 </script>
 
@@ -12,7 +13,9 @@
 					<img src={work.imageUrl} alt={work.title} />
 				</div>
 				<div class="w-[400px] flex flex-col items-start gap-3">
-					<p class="text-xs font-light text-gray-500">Randomly chosen to be displayed</p>
+					{#if statusDescription}
+						<p class="text-xs font-light text-gray-500">{statusDescription}</p>
+					{/if}
 					<div class="flex flex-row items-baseline gap-6">
 						<h2 class="text-3xl">{work.title}</h2>
 						<h3>{work.shutter} f{work.aperture} {work.iso}</h3>
@@ -34,7 +37,9 @@
 					<img src={work.imageUrl} alt={work.title} />
 				</div>
 				<div class="flex flex-col items-start gap-3">
-					<p class="text-xs font-light text-gray-500">Randomly chosen to be displayed</p>
+					{#if statusDescription}
+						<p class="text-xs font-light text-gray-500">{statusDescription}</p>
+					{/if}
 					<h2 class="text-3xl">{work.title}</h2>
 					<h3>{work.shutter} f{work.aperture} {work.iso}</h3>
 					<p class="text-xs font-light text-gray-500 w-[250px]">{work.description}</p>
@@ -51,7 +56,9 @@
 		{#if work.display === 'right'}
 			<div class="flex flex-row items-end w-full gap-16">
 				<div class="flex flex-col items-start gap-3">
-					<p class="text-xs font-light text-gray-500">Randomly chosen to be displayed</p>
+					{#if statusDescription}
+						<p class="text-xs font-light text-gray-500">{statusDescription}</p>
+					{/if}
 					<div class="flex flex-row items-baseline gap-6">
 						<h2 class="text-3xl">{work.title}</h2>
 						<h3>{work.shutter} f{work.aperture} {work.iso}</h3>
@@ -73,7 +80,9 @@
 		{#if work.display === 'middle'}
 			<div class="flex flex-row items-start w-full gap-16">
 				<div class="flex flex-col items-start gap-3">
-					<p class="text-xs font-light text-gray-500">Randomly chosen to be displayed</p>
+					{#if statusDescription}
+						<p class="text-xs font-light text-gray-500">{statusDescription}</p>
+					{/if}
 					<h2 class="text-3xl">{work.title}</h2>
 					<h3>{work.shutter} f{work.aperture} {work.iso}</h3>
 					<p class="text-xs font-light text-gray-500 w-[280px]">{work.description}</p>

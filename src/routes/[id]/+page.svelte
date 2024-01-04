@@ -6,5 +6,5 @@
 </script>
 
 <section class="h-full w-screen">
-	<FeedView {feed} mode="single"/>
+	<FeedView statusDescription="" {feed} mode="single"/>
 </section>

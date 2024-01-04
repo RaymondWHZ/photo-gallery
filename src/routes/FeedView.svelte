@@ -2,6 +2,7 @@
 	import WorkView from './WorkView.svelte';
 	import type { WorkOverview } from '$lib/utils/cms';
 
+	export let statusDescription: string;
 	export let feed: WorkOverview[];
 	export let mode: 'feed' | 'single' = 'feed';
 
@@ -55,7 +56,7 @@
 	on:mouseleave={() => mouseIn = false}
 >
 	<div class="h-full w-full max-w-[1200px]">
-		<WorkView work={feed[index]} />
+		<WorkView {statusDescription} work={feed[index]} />
 	</div>
 </div>
 {#if mouseIn}

@@ -40,7 +40,6 @@
     "@fontsource/lekton": "^5.0.8",
     "@fontsource/noto-sans": "^5.0.18",
     "@fontsource/reenie-beanie": "^5.0.18",
-    "@notionhq/client": "^2.2.14",
-    "@sanity/client": "^6.10.0"
+    "@notionhq/client": "^2.2.14"
   }
 }

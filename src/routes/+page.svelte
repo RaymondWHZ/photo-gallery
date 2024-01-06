@@ -5,8 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>Raymond's Works</title>
 </svelte:head>
 
 <section class="h-full w-screen">

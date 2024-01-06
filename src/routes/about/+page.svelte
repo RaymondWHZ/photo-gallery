@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>About</title>
+	<title>About | Raymond's Works</title>
 </svelte:head>
 
 <div class="h-full w-full px-4 sm:px-10 lg:px-40 flex flex-row items-stretch justify-center py-8 lg:py-20">

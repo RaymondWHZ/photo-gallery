@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.work.title}</title>
+	<title>{data.work.title} | Raymond's Works</title>
 </svelte:head>
 
 <section class="h-full w-screen">

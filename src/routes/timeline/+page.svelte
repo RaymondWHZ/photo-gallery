@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>Timeline</title>
+	<title>Timeline | Raymond's Works</title>
 	{#if prefetchImageUrl}
 		<link rel="preload" as="image" href={prefetchImageUrl} />
 	{/if}

@@ -40,7 +40,7 @@ function resultToWorkOverview(result: any): WorkOverview {
 		date: result.properties.date.date.start,
 		locationName: result.properties.locationName.rollup.array[0].title[0].plain_text,
 		deviceName: result.properties.deviceName.rollup.array[0].title[0].plain_text,
-		lensName: result.properties.lensName.rollup.array[0].title[0].plain_text
+		lensName: result.properties.lensName.rollup.array[0]?.title[0].plain_text
 	};
 }
 

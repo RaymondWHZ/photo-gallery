@@ -22,7 +22,7 @@
 					<div>
 						<span class="text-sm text-gray-500">{image.date.split('-')[2]}</span>
 						<a href={"/" + image._id} on:mouseenter={() => prefetchImageUrl = image.imageUrl}>
-							<img class="max-h-[250px]" src={image.imageUrl + "?h=1000"} alt={image.title} />
+							<img class="max-h-[250px]" src={image.imageUrl + "&width=1000"} alt={image.title} />
 						</a>
 					</div>
 				{/each}

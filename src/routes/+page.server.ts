@@ -1,4 +1,4 @@
-import { fetchAllWorks } from '$lib/utils/cms';
+import { fetchAllWorksDateDesc } from '$lib/utils/cms';
 import { shuffleArray } from '$lib/utils/utils';
 
 export const config = {
@@ -8,7 +8,7 @@ export const config = {
 };
 
 export async function load() {
-	const feed = await fetchAllWorks();
+	const feed = await fetchAllWorksDateDesc();
 	return {
 		feed: shuffleArray(feed)
 	};

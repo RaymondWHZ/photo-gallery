@@ -14,6 +14,9 @@
 	</main>
 
 	<footer class="w-full max-w-[1200px]">
-		<p class="text-gray-400 text-xs py-10">© 2023 Raymond Wu. All rights reserved. Applies to all contents.</p>
+		<p class="text-gray-400 text-xs py-10">
+			© 2023 Raymond Wu. All rights reserved. Applies to all contents.
+			<a class="underline" href={import.meta.env.VITE_GITHUB_REPO_URL}>Github</a>.
+		</p>
 	</footer>
 </div>

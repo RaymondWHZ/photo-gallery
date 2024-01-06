@@ -29,7 +29,7 @@ You will then need to create a page (ideally on the same page as the database) t
 - Introductory text to a quote
 - A quote
 
-You will then need to create an integration with read capability and share the database with it. You will also need to publish the database to web so that images can be accessed.
+You will then need to create an integration with read capability and share the database with it. You will also need to publish the page containing the database to web so that images can be accessed.
 
 You can then create a `.env` file with the following contents:
 

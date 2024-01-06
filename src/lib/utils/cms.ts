@@ -1,7 +1,8 @@
 import { Client } from '@notionhq/client';
 
 const client = new Client({
-	auth: import.meta.env.VITE_NOTION_TOKEN
+	auth: import.meta.env.VITE_NOTION_TOKEN,
+	notionVersion: '2022-06-28'
 });
 
 export interface WorkOverview {

@@ -18,7 +18,11 @@ export interface WorkOverview {
 	date: string;
 	locationName: string;
 	deviceName: string;
-	lensName: string;
+	lensName?: string;
+}
+
+function packPlainText(arr: { plain_text: string }[]): string {
+	return arr.reduce((acc: string, cur: { plain_text: string }) => acc + cur.plain_text, '')
 }
 
 function resultToWorkOverview(result: any): WorkOverview {
@@ -34,15 +38,15 @@ function resultToWorkOverview(result: any): WorkOverview {
 		_id: result.properties.id.unique_id.number.toString(),
 		display: result.properties.display.select.name,
 		imageUrl,
-		title: result.properties.title.title[0].plain_text,
-		shutter: result.properties.shutter.rich_text[0].plain_text,
-		aperture: result.properties.aperture.rich_text[0].plain_text,
-		iso: result.properties.iso.rich_text[0].plain_text,
-		description: result.properties.description.rich_text[0].plain_text,
+		title: packPlainText(result.properties.title.title),
+		shutter: packPlainText(result.properties.shutter.rich_text),
+		aperture: packPlainText(result.properties.aperture.rich_text),
+		iso: packPlainText(result.properties.iso.rich_text),
+		description: packPlainText(result.properties.description.rich_text),
 		date: result.properties.date.date.start,
-		locationName: result.properties.locationName.rollup.array[0].title[0].plain_text,
-		deviceName: result.properties.deviceName.rollup.array[0].title[0].plain_text,
-		lensName: result.properties.lensName.rollup.array[0]?.title[0].plain_text
+		locationName: packPlainText(result.properties.locationName.rollup.array[0].title),
+		deviceName: packPlainText(result.properties.deviceName.rollup.array[0].title),
+		lensName: result.properties.lensName.rollup.array[0] ? packPlainText(result.properties.lensName.rollup.array[0].title) : undefined
 	};
 }
 

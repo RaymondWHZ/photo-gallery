@@ -6,15 +6,28 @@ export const config = {
 	}
 };
 
+const monthDict: Record<string, string> = {
+	'01': 'January',
+	'02': 'February',
+	'03': 'March',
+	'04': 'April',
+	'05': 'May',
+	'06': 'June',
+	'07': 'July',
+	'08': 'August',
+	'09': 'September',
+	'10': 'October',
+	'11': 'November',
+	'12': 'December'
+}
+
 export async function load() {
 	const works = await fetchAllWorksDateDesc();
 	const monthYears: string[] = [];
 	const timeline: Record<string, WorkOverview[]> = {};
 	works.forEach((work) => {
-		const monthYear = new Date(work.date).toLocaleString('en-US', {
-			month: 'long',
-			year: 'numeric'
-		});
+		const [year, month] = work.date.split('-');
+		const monthYear = `${monthDict[month]} ${year}`;
 		if (timeline[monthYear]) {
 			timeline[monthYear].push(work);
 		} else {

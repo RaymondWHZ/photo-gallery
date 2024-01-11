@@ -60,18 +60,21 @@ export async function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
 	return results.map(resultToWorkOverview);
 }
 
-export async function fetchSingleWork(id: string): Promise<WorkOverview> {
+export async function fetchSingleWork(id: number): Promise<WorkOverview | undefined> {
 	const result = (
 		await client.databases.query({
 			database_id: import.meta.env.VITE_NOTION_DATABASE_ID,
 			filter: {
 				property: 'id',
 				unique_id: {
-					equals: Number(id)
+					equals: id
 				}
 			}
 		})
 	).results[0] as any;
+	if (!result) {
+		return undefined;
+	}
 	return resultToWorkOverview(result);
 }
 

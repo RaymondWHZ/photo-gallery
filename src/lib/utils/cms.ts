@@ -18,10 +18,10 @@ export interface WorkOverview {
 	date: string;
 	locationName: string;
 	deviceName: string;
-	lensName?: string;
+	lensName: string;
 }
 
-function packPlainText(arr: { plain_text: string }[]): string {
+function packPlainText(arr: { plain_text: string }[] = []): string {
 	return arr.reduce((acc: string, cur: { plain_text: string }) => acc + cur.plain_text, '')
 }
 
@@ -46,7 +46,7 @@ function resultToWorkOverview(result: any): WorkOverview {
 		date: result.properties.date.date.start,
 		locationName: packPlainText(result.properties.locationName.rollup.array[0].title),
 		deviceName: packPlainText(result.properties.deviceName.rollup.array[0].title),
-		lensName: result.properties.lensName.rollup.array[0] ? packPlainText(result.properties.lensName.rollup.array[0].title) : undefined
+		lensName: packPlainText(result.properties.lensName.rollup.array[0]?.title)
 	};
 }
 
@@ -95,10 +95,10 @@ export async function fetchAboutInfo(): Promise<AboutInfo> {
 		block_id: NOTION_ABOUT_PAGE_ID,
 		page_size: 4
 	})) as any;
-	const title = res.results[0].paragraph.rich_text[0].plain_text;
-	const description = res.results[1].paragraph.rich_text[0].plain_text;
-	const quoteIntro = res.results[2].paragraph.rich_text[0].plain_text;
-	const quote = res.results[3].paragraph.rich_text[0].plain_text;
+	const title = packPlainText(res.results[0].paragraph.rich_text);
+	const description = packPlainText(res.results[1].paragraph.rich_text);
+	const quoteIntro = packPlainText(res.results[2].paragraph.rich_text);
+	const quote = packPlainText(res.results[3].paragraph.rich_text);
 	return {
 		title,
 		description,

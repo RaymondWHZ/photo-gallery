@@ -1,7 +1,8 @@
 import { Client } from '@notionhq/client';
+import { NOTION_TOKEN, NOTION_DATABASE_ID, NOTION_ABOUT_PAGE_ID } from '$env/static/private';
 
 const client = new Client({
-	auth: import.meta.env.VITE_NOTION_TOKEN,
+	auth: NOTION_TOKEN,
 	notionVersion: '2022-06-28'
 });
 
@@ -48,7 +49,7 @@ function resultToWorkOverview(result: any): WorkOverview {
 export async function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
 	const results = (
 		await client.databases.query({
-			database_id: import.meta.env.VITE_NOTION_DATABASE_ID,
+			database_id: NOTION_DATABASE_ID,
 			sorts: [
 				{
 					property: 'date',
@@ -63,7 +64,7 @@ export async function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
 export async function fetchSingleWork(id: number): Promise<WorkOverview | undefined> {
 	const result = (
 		await client.databases.query({
-			database_id: import.meta.env.VITE_NOTION_DATABASE_ID,
+			database_id: NOTION_DATABASE_ID,
 			filter: {
 				property: 'id',
 				unique_id: {
@@ -87,7 +88,7 @@ export interface AboutInfo {
 
 export async function fetchAboutInfo(): Promise<AboutInfo> {
 	const res = (await client.blocks.children.list({
-		block_id: import.meta.env.VITE_NOTION_ABOUT_PAGE_ID,
+		block_id: NOTION_ABOUT_PAGE_ID,
 		page_size: 4
 	})) as any;
 	const title = res.results[0].paragraph.rich_text[0].plain_text;

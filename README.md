@@ -34,10 +34,10 @@ You will then need to create an integration with read capability and share the d
 You can then create a `.env` file with the following contents:
 
 ```dotenv
-VITE_NOTION_TOKEN=<your-integration-token>
-VITE_NOTION_DATABASE_ID=<your-database-id>
-VITE_NOTION_ABOUT_PAGE_ID=<your-about-page-id>
-VITE_GITHUB_REPO_URL=<your-github-repo-url-to-be-put-in-the-footer>
+NOTION_TOKEN=<your-integration-token>
+NOTION_DATABASE_ID=<your-database-id>
+NOTION_ABOUT_PAGE_ID=<your-about-page-id>
+PUBLIC_GITHUB_REPO_URL=<your-github-repo-url-to-be-put-in-the-footer>
 ```
 
 ## Developing

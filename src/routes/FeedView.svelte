@@ -93,7 +93,7 @@
 					</h1>
 				{/if}
 			{/if}
-			{#if history.length > 0 && mode === 'single'}
+			{#if history.length > 1 && mode === 'single'}
 				<h1
 					class="bg-black text-white text-xs p-1"
 				>
@@ -142,7 +142,7 @@
 			{/if}
 		{/if}
 	{/if}
-	{#if history.length > 0 && mode === 'single'}
+	{#if history.length > 1 && mode === 'single'}
 		<h1
 			class="bg-black text-white text-xs p-1"
 			style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"

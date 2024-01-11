@@ -22,7 +22,7 @@ export interface WorkOverview {
 }
 
 function packPlainText(arr: { plain_text: string }[] = []): string {
-	return arr.reduce((acc: string, cur: { plain_text: string }) => acc + cur.plain_text, '')
+	return arr.reduce((acc, cur) => acc + cur.plain_text, '')
 }
 
 function resultToWorkOverview(result: any): WorkOverview {

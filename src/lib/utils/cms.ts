@@ -56,8 +56,8 @@ export async function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
 			database_id: NOTION_DATABASE_ID,
 			filter: {
 				property: 'status',
-				status: {
-					equals: 'published'
+				select: {
+					does_not_equal: 'hidden'
 				}
 			},
 			sorts: [

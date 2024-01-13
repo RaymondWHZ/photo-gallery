@@ -6,6 +6,8 @@ This is a simplistic photo gallery of my works. It is built with SvelteKit and T
 
 This app uses [Notion](https://notion.so) as a CMS. You will need to create a Notion account and create a page with a database with the following properties:
 
+- `id` (unique id)
+- `status` (status with options `published`, `hidden` in whatever categories)
 - `title` (title)
 - `image` (file)
 - `shutter` (text)

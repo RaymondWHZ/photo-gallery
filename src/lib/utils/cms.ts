@@ -54,6 +54,12 @@ export async function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
 	const results = (
 		await client.databases.query({
 			database_id: NOTION_DATABASE_ID,
+			filter: {
+				property: 'status',
+				status: {
+					equals: 'published'
+				}
+			},
 			sorts: [
 				{
 					property: 'date',

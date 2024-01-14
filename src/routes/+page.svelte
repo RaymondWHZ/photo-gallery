@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FeedView from './FeedView.svelte';
+	import FeedView from '$lib/components/FeedView.svelte';
 
 	export let data;
 </script>

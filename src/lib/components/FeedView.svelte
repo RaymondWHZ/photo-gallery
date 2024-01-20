@@ -85,12 +85,6 @@
 					>
 						CLICK LEFT HALF TO VIEW PREVIOUS
 					</h1>
-				{:else}
-					<h1
-						class="bg-black text-white text-xs p-1 opacity-40"
-					>
-						NO PREVIOUS
-					</h1>
 				{/if}
 			{/if}
 			{#if history.length > 1 && mode === 'single'}
@@ -137,7 +131,7 @@
 					class="bg-black text-white text-xs p-1 opacity-40"
 					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
 				>
-					NO PREVIOUS
+					CLICK RIGHT HALF TO VIEW NEXT
 				</h1>
 			{/if}
 		{/if}

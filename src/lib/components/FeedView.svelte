@@ -85,6 +85,12 @@
 					>
 						CLICK LEFT HALF TO VIEW PREVIOUS
 					</h1>
+				{:else}
+					<h1
+						class="bg-black text-white text-xs p-1 opacity-40"
+					>
+						NO PREVIOUS
+					</h1>
 				{/if}
 			{/if}
 			{#if history.length > 1 && mode === 'single'}

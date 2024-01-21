@@ -131,7 +131,7 @@
 					class="bg-black text-white text-xs p-1 opacity-40"
 					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
 				>
-					CLICK RIGHT HALF TO VIEW NEXT
+					NO PREVIOUS; CLICK RIGHT HALF TO VIEW NEXT
 				</h1>
 			{/if}
 		{/if}

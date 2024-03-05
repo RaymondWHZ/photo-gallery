@@ -8,7 +8,10 @@ export default {
 				noto: ['Noto Sans', 'sans-serif'],
 				'reenie-beanie': ['Reenie Beanie', 'cursive'],
 				'avenir-next': ['Avenir Next LT Pro', 'sans-serif'],
-			}
+			},
+			maxWidth: {
+				'safe-screen': '1200px',
+			},
 		}
 	},
 	plugins: []

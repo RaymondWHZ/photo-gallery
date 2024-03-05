@@ -64,7 +64,7 @@
 	on:mouseleave={() => mouseIn = false}
 >
 	{#if touchScreen}
-		<div class="w-full flex flex-col items-start gap-1 max-w-[1200px] mb-8">
+		<div class="w-full flex flex-col items-start gap-1 max-w-safe-screen mb-8">
 			{#if mode === 'feed'}
 				{#if hasNext}
 					<h1
@@ -102,7 +102,7 @@
 			{/if}
 		</div>
 	{/if}
-	<div class="h-full w-full max-w-[1200px]">
+	<div class="h-full w-full max-w-safe-screen">
 		<WorkView {statusDescription} work={feed[index]} />
 	</div>
 </div>

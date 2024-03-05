@@ -70,7 +70,7 @@
 					<h1
 						class="bg-black text-white text-xs p-1"
 					>
-						CLICK RIGHT HALF TO VIEW NEXT
+						CLICK RIGHT HALF TO VIEW NEXT →
 					</h1>
 				{:else}
 					<h1
@@ -83,7 +83,7 @@
 					<h1
 						class="bg-black text-white text-xs p-1"
 					>
-						CLICK LEFT HALF TO VIEW PREVIOUS
+						CLICK LEFT HALF TO VIEW PREVIOUS ←
 					</h1>
 				{:else}
 					<h1
@@ -114,7 +114,7 @@
 					class="bg-black text-white text-xs p-1"
 					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
 				>
-					CLICK HERE TO VIEW NEXT
+					CLICK HERE TO VIEW NEXT →
 				</h1>
 			{:else}
 				<h1
@@ -130,7 +130,7 @@
 					class="bg-black text-white text-xs p-1"
 					style="position: absolute; top: {pageY + 10}px; left: {pageX + 10}px"
 				>
-					CLICK HERE TO VIEW PREVIOUS
+					CLICK HERE TO VIEW PREVIOUS ←
 				</h1>
 			{:else}
 				<h1

@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Avenir Next LT Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Avenir Next LT Pro Regular.otf');
+}

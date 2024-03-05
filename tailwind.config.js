@@ -6,7 +6,8 @@ export default {
 			fontFamily: {
 				lekton: ['Lekton', 'sans-serif'],
 				noto: ['Noto Sans', 'sans-serif'],
-				'reenie-beanie': ['Reenie Beanie', 'cursive']
+				'reenie-beanie': ['Reenie Beanie', 'cursive'],
+				'avenir-next': ['Avenir Next LT Pro', 'sans-serif'],
 			}
 		}
 	},

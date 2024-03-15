@@ -10,7 +10,7 @@ export default {
 				'avenir-next': ['Avenir Next LT Pro', 'sans-serif'],
 			},
 			maxWidth: {
-				'safe-screen': '1200px',
+				'safe-screen': '1280px',
 			},
 		}
 	},

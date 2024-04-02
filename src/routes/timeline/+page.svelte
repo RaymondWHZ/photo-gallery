@@ -11,7 +11,7 @@
 	{/if}
 </svelte:head>
 
-<div class="h-full w-full px-4 sm:px-10 lg:px-40 flex flex-row items-stretch justify-center py-8 lg:py-20">
+<div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
 	<div class="h-full grow max-w-safe-screen flex flex-col items-stretch justify-start">
 		{#each data.monthYears as monthYear}
 			<div class="w-full border-b pb-4">

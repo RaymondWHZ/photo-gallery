@@ -5,3 +5,7 @@
 :root {
 	font-family: 'Avenir Next LT Pro', sans-serif;
 }
+
+.px-safe-screen {
+	@apply px-4 sm:px-10 lg:px-40;
+}

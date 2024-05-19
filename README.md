@@ -4,7 +4,7 @@ This is a simplistic photo gallery of my works. It is built with SvelteKit and T
 
 ## Prerequisites
 
-This app uses [Notion](https://notion.so) as a CMS. You will need to create a Notion account and create a page with a database with the following properties:
+This app uses [Notion](https://notion.so) as a CMS. You will need to create a Notion account and create a page with a database called `db: works` with the following properties:
 
 - `id` (unique id)
 - `status` (single-select with option `hidden`)
@@ -24,21 +24,22 @@ This app uses [Notion](https://notion.so) as a CMS. You will need to create a No
 - `lensName` (rollup of `lens` with property name `name`)
 - more if you wish, but these will not be displayed
 
-You will then need to create a page (ideally on the same page as the database) to provide information for the about page with exactly 4 paragraphs, each representing:
+You will then also need to create a database called `db: about` to store about page texts, in the format of:
 
-- Title for the about page
-- Main text for the about page
-- Introductory text to a quote
-- A quote
+| section (type: title) | text: (type: text)        |
+|-----------------------|---------------------------|
+| title                 | Title for your about page |
+| intro                 | Intro on your about page  |
+| quote_title           | Title for quote section   |
+| quote                 | A quote                   |
 
-You will then need to create an integration with read capability and share the database with it. You will also need to publish the page containing the database to web so that images can be accessed.
+You will then need to create an integration with read capability and share the page containing all page with it. You will also need to publish the `db: works` database to web so that images can be accessed.
 
 You can then create a `.env` file with the following contents:
 
 ```dotenv
 NOTION_TOKEN=<your-integration-token>
-NOTION_DATABASE_ID=<your-database-id>
-NOTION_ABOUT_PAGE_ID=<your-about-page-id>
+NOTION_CMS_PAGE_ID=<your-cms-page-id>
 PUBLIC_GITHUB_REPO_URL=<your-github-repo-url-to-be-put-in-the-footer>
 ```
 
@@ -76,6 +77,6 @@ bun preview
 
 ## Deploying to the web
 
-This app includes the [vercel adapter](https://kit.svelte.dev/docs/adapter-vercel), which will allow you to deploy the app seamlessly at [vercel.com](https://vercel.com/).
+This app includes the [adaptor-auto](https://kit.svelte.dev/docs/adapter-auto), which will allow you to deploy the app seamlessly to many platforms including [vercel.com](https://vercel.com/).
 
 You might add other adapters for different platforms, reference the [SvelteKit documentation](https://kit.svelte.dev/docs/adapters) for more information.

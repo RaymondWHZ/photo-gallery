@@ -31,7 +31,7 @@
 				</div>
 			</div>
 		{/if}
-		{#if work.display === 'left'}
+		{#if work.display === 'left' || work.display === undefined}
 			<div class="flex flex-row items-end w-full gap-8 xl:gap-16">
 				<div class="shrink">
 					<img src={work.image} alt={work.title} />

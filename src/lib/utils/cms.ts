@@ -37,7 +37,7 @@ const dbSchemas = createDBSchemas({
 		iso: rich_text().plainText(),
 		description: rich_text().plainText(),
 		date: date().handleUsing(value => value?.start ?? ''),
-		display: select().stringEnum('left', 'right', 'top', 'middle'),
+		display: select().stringEnum('left', 'right', 'top', 'middle', undefined),
 		locationName: rollupSingleTitle,
 		deviceName: rollupSingleTitle,
 		lensName: rollupSingleTitle

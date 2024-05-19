@@ -18,11 +18,11 @@
 				<h1 class="text-2xl">{monthYear}</h1>
 			</div>
 			<div class="w-full flex flex-row flex-wrap gap-x-8 gap-y-2 pt-4 pb-8">
-				{#each data.timeline[monthYear] as image}
+				{#each data.timeline[monthYear] as work}
 					<div>
-						<span class="text-sm text-gray-500">{image.date.split('-')[2]}</span>
-						<a href={"/" + image._id} on:mouseenter={() => prefetchImageUrl = image.imageUrl}>
-							<img class="max-h-[250px]" src={image.imageUrl + "&width=1000"} alt={image.title} />
+						<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
+						<a href={"/" + work.id} on:mouseenter={() => prefetchImageUrl = work.image}>
+							<img class="max-h-[250px]" src={work.image + "&width=1000"} alt={work.title} />
 						</a>
 					</div>
 				{/each}

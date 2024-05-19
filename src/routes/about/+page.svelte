@@ -15,7 +15,7 @@
 				Raymond Wu
 			</span>
 			<div class="h-20"></div>
-			<p class="text-xs font-light text-gray-500">{data.about.quoteIntro}</p>
+			<p class="text-xs font-light text-gray-500">{data.about.quote_title}</p>
 			<p class="text-xs font-lekton tracking-wide">{data.about.quote}</p>
 		</div>
 	</div>

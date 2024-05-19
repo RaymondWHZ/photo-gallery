@@ -1,10 +1,10 @@
 <script lang="ts">
 	import WorkView from './WorkView.svelte';
-	import type { WorkOverview } from '$lib/utils/cms';
+	import type { Work } from '$lib/utils/cms';
 	import { onMount } from 'svelte';
 
 	export let statusDescription: string;
-	export let feed: WorkOverview[];
+	export let feed: Work[];
 	export let mode: 'feed' | 'single' = 'feed';
 
 	let index = 0;
@@ -51,10 +51,10 @@
 />
 <svelte:head>
 	{#if index > 0}
-		<link rel="preload" as="image" href={feed[index - 1].imageUrl} />
+		<link rel="preload" as="image" href={feed[index - 1].image} />
 	{/if}
 	{#if index < feed.length - 1}
-		<link rel="preload" as="image" href={feed[index + 1].imageUrl} />
+		<link rel="preload" as="image" href={feed[index + 1].image} />
 	{/if}
 </svelte:head>
 <div

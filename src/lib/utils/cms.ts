@@ -1,114 +1,94 @@
-import { Client } from '@notionhq/client';
-import { NOTION_TOKEN, NOTION_DATABASE_ID, NOTION_ABOUT_PAGE_ID } from '$env/static/private';
+import { NOTION_TOKEN, NOTION_CMS_PAGE_ID } from '$env/static/private';
+import {
+	createDBSchemas,
+	createNotionDBClient,
+	date, type DBObjectTypesInfer,
+	files,
+	rich_text, rollup,
+	select,
+	title,
+	unique_id
+} from "notion-cms-adaptor";
+import type {RichTextItemResponse} from "@notionhq/client/build/src/api-endpoints";
 
-const client = new Client({
-	auth: NOTION_TOKEN,
-	notionVersion: '2022-06-28'
+function packPlainText(arr: RichTextItemResponse[]): string {
+	return arr.reduce((acc, cur) => acc + cur.plain_text, '');
+}
+
+const rollupSingleTitle = rollup().handleArrayUsing((value): string => {
+	const first = value[0];
+	if (first && first.type === 'title') {
+		return packPlainText(first.title);
+	}
+	return '';
 });
 
-export interface WorkOverview {
-	_id: string;
-	display: string;
-	imageUrl: string;
-	title: string;
-	shutter: string;
-	aperture: string;
-	iso: string;
-	description: string;
-	date: string;
-	locationName: string;
-	deviceName: string;
-	lensName: string;
-}
-
-function packPlainText(arr: { plain_text: string }[] = []): string {
-	return arr.reduce((acc, cur) => acc + cur.plain_text, '')
-}
-
-function resultToWorkOverview(result: any): WorkOverview {
-	const pageId = result.id;
-	const rawImageUrl = result.properties.image.files[0].file.url;
-	const imageUrl =
-		'https://www.notion.so/image/' +
-		encodeURIComponent(rawImageUrl.split('?')[0]) +
-		'?id=' +
-		pageId +
-		'&table=block';
-	return {
-		_id: result.properties.id.unique_id.number.toString(),
-		display: result.properties.display.select.name,
-		imageUrl,
-		title: packPlainText(result.properties.title.title),
-		shutter: packPlainText(result.properties.shutter.rich_text),
-		aperture: packPlainText(result.properties.aperture.rich_text),
-		iso: packPlainText(result.properties.iso.rich_text),
-		description: packPlainText(result.properties.description.rich_text),
-		date: result.properties.date.date.start,
-		locationName: packPlainText(result.properties.locationName.rollup.array[0].title),
-		deviceName: packPlainText(result.properties.deviceName.rollup.array[0].title),
-		lensName: packPlainText(result.properties.lensName.rollup.array[0]?.title)
-	};
-}
-
-export async function fetchAllWorksDateDesc(): Promise<WorkOverview[]> {
-	const results = (
-		await client.databases.query({
-			database_id: NOTION_DATABASE_ID,
-			filter: {
-				property: 'status',
-				select: {
-					does_not_equal: 'hidden'
-				}
-			},
-			sorts: [
-				{
-					property: 'date',
-					direction: 'descending'
-				}
-			]
-		})
-	).results as any[];
-	return results.map(resultToWorkOverview);
-}
-
-export async function fetchSingleWork(id: number): Promise<WorkOverview | undefined> {
-	const result = (
-		await client.databases.query({
-			database_id: NOTION_DATABASE_ID,
-			filter: {
-				property: 'id',
-				unique_id: {
-					equals: id
-				}
-			}
-		})
-	).results[0] as any;
-	if (!result) {
-		return undefined;
+const dbSchemas = createDBSchemas({
+	about: {
+		section: title().plainText(),
+		text: rich_text().plainText(),
+	},
+	works: {
+		id: unique_id().number(),
+		title: title().plainText(),
+		image: files().singleNotionImageUrl(),
+		shutter: rich_text().plainText(),
+		aperture: rich_text().plainText(),
+		iso: rich_text().plainText(),
+		description: rich_text().plainText(),
+		date: date().handleUsing(value => value?.start ?? ''),
+		display: select().stringEnum('left', 'right', 'top', 'middle'),
+		locationName: rollupSingleTitle,
+		deviceName: rollupSingleTitle,
+		lensName: rollupSingleTitle
 	}
-	return resultToWorkOverview(result);
+})
+
+const client = createNotionDBClient({
+	notionToken: NOTION_TOKEN,
+	dbPageId: NOTION_CMS_PAGE_ID,
+	dbSchemas,
+});
+
+export type ObjectTypes = DBObjectTypesInfer<typeof dbSchemas>;
+export type Work = ObjectTypes['works'];
+
+export async function fetchAllWorksDateDesc(): Promise<Work[]> {
+	return await client.query('works', {
+		filter: {
+			property: 'status',
+			select: {
+				does_not_equal: 'hidden'
+			}
+		},
+		sorts: [
+			{
+				property: 'date',
+				direction: 'descending'
+			}
+		]
+	})
 }
 
-export interface AboutInfo {
+export async function fetchSingleWork(id: number): Promise<Work | undefined> {
+	const results = await client.query('works', {
+		filter: {
+			property: 'id',
+			unique_id: {
+				equals: id
+			}
+		}
+	})
+	return results[0] ?? undefined;
+}
+
+export type AboutInfo = {
 	title: string;
 	description: string;
-	quoteIntro: string;
+	quote_title: string;
 	quote: string;
 }
 
 export async function fetchAboutInfo(): Promise<AboutInfo> {
-	const res = (await client.blocks.children.list({
-		block_id: NOTION_ABOUT_PAGE_ID,
-		page_size: 4
-	})) as any;
-	const title = packPlainText(res.results[0].paragraph.rich_text);
-	const description = packPlainText(res.results[1].paragraph.rich_text);
-	const quoteIntro = packPlainText(res.results[2].paragraph.rich_text);
-	const quote = packPlainText(res.results[3].paragraph.rich_text);
-	return {
-		title,
-		description,
-		quoteIntro,
-		quote
-	};
+	return (await client.queryKV('about', 'section', 'text')) as AboutInfo;
 }

@@ -15,10 +15,9 @@ function packPlainText(arr: RichTextItemResponse[]): string {
 	return arr.reduce((acc, cur) => acc + cur.plain_text, '');
 }
 
-const rollupSingleTitle = rollup().handleArrayUsing((value): string => {
-	const first = value[0];
-	if (first && first.type === 'title') {
-		return packPlainText(first.title);
+const rollupSingleTitle = rollup().handleSingleUsing((value): string => {
+	if (value && value.type === 'title') {
+		return packPlainText(value.title);
 	}
 	return '';
 });
@@ -36,7 +35,7 @@ const dbSchemas = createDBSchemas({
 		aperture: rich_text().plainText(),
 		iso: rich_text().plainText(),
 		description: rich_text().plainText(),
-		date: date().handleUsing(value => value?.start ?? ''),
+		date: date().startDate(),
 		display: select().stringEnum('left', 'right', 'top', 'middle', undefined),
 		locationName: rollupSingleTitle,
 		deviceName: rollupSingleTitle,
@@ -71,15 +70,7 @@ export async function fetchAllWorksDateDesc(): Promise<Work[]> {
 }
 
 export async function fetchSingleWork(id: number): Promise<Work | undefined> {
-	const results = await client.query('works', {
-		filter: {
-			property: 'id',
-			unique_id: {
-				equals: id
-			}
-		}
-	})
-	return results[0] ?? undefined;
+	return await client.queryOneByUniqueId('works', id)
 }
 
 export type AboutInfo = {
@@ -90,5 +81,5 @@ export type AboutInfo = {
 }
 
 export async function fetchAboutInfo(): Promise<AboutInfo> {
-	return (await client.queryKV('about', 'section', 'text')) as AboutInfo;
+	return await client.queryKV('about', 'section', 'text');
 }

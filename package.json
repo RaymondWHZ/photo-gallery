@@ -41,6 +41,6 @@
     "@fontsource/noto-sans": "^5.0.18",
     "@fontsource/reenie-beanie": "^5.0.18",
     "@notionhq/client": "^2.2.14",
-    "notion-cms-adaptor": "^1.1.2"
+    "notion-cms-adaptor": "^1.2.0"
   }
 }

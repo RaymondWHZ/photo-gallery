@@ -1,4 +1,4 @@
-import { fetchAllWorksDateDesc, type WorkOverview } from '$lib/utils/cms';
+import { fetchAllWorksDateDesc, type Work } from '$lib/utils/cms';
 
 export const config = {
 	isr: {
@@ -24,7 +24,7 @@ const monthDict: Record<string, string> = {
 export async function load() {
 	const works = await fetchAllWorksDateDesc();
 	const monthYears: string[] = [];
-	const timeline: Record<string, WorkOverview[]> = {};
+	const timeline: Record<string, Work[]> = {};
 	works.forEach((work) => {
 		const [year, month] = work.date.split('-');
 		const monthYear = `${monthDict[month]} ${year}`;

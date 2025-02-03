@@ -2,10 +2,14 @@
 	export let data;
 
 	let prefetchImageUrl: string = '';
+	$: allImageUrls = data.monthYears.flatMap(monthYear => data.timeline[monthYear].map(work => work.image));
 </script>
 
 <svelte:head>
 	<title>Timeline | Raymond's Works</title>
+	{#each allImageUrls as imageUrl}
+		<link rel="preload" as="image" href={imageUrl + "&width=1"} />
+	{/each}
 	{#if prefetchImageUrl}
 		<link rel="preload" as="image" href={prefetchImageUrl} />
 	{/if}

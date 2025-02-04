@@ -21,9 +21,11 @@
 				{#each data.timeline[monthYear] as work}
 					<div>
 						<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
-						<a href={"/" + work.id}>
-							<img class="max-h-[250px]" src={work.image + "&width=" + (work.display === "top" ? "2000" : "1000")} alt={work.title} />
-						</a>
+						<div class="overflow-clip">
+							<a href={"/" + work.id} class="focus:blur-lg transition duration-100">
+								<img class="max-h-[250px]" src={work.image + "&width=" + (work.display === "top" ? "2000" : "1000")} alt={work.title} />
+							</a>
+						</div>
 					</div>
 				{/each}
 			</div>

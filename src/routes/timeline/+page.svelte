@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let data;
 
-	let prefetchImageUrl: string = '';
 	$: allImageUrls = data.monthYears.flatMap(monthYear => data.timeline[monthYear].map(work => work.image));
 </script>
 
@@ -10,9 +9,6 @@
 	{#each allImageUrls as imageUrl}
 		<link rel="preload" as="image" href={imageUrl + "&width=1"} />
 	{/each}
-	{#if prefetchImageUrl}
-		<link rel="preload" as="image" href={prefetchImageUrl} />
-	{/if}
 </svelte:head>
 
 <div class="h-full w-full px-safe-screen flex flex-row items-stretch justify-center py-8 lg:py-20">
@@ -25,7 +21,7 @@
 				{#each data.timeline[monthYear] as work}
 					<div>
 						<span class="text-sm text-gray-500">{work.date.split('-')[2]}</span>
-						<a href={"/" + work.id} on:mouseenter={() => prefetchImageUrl = work.image}>
+						<a href={"/" + work.id}>
 							<img class="max-h-[250px]" src={work.image + "&width=" + (work.display === "top" ? "2000" : "1000")} alt={work.title} />
 						</a>
 					</div>

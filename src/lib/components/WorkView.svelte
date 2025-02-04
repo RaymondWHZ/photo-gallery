@@ -11,7 +11,7 @@
 {#key work.id}
 	<div class="flex flex-col justify-center items-center h-full md:hidden">
 		<div class="flex flex-col items-start w-full gap-10">
-			<SmartImageSeries additionalClasses="w-full" image={work.image} alt={work.title} interWidth={work.display === "top" ? 2000 : undefined} />
+			<SmartImageSeries additionalClasses="w-full" image={work.image} alt={work.title} />
 			<div class="flex flex-col items-start gap-3">
 				<DescSection {work} {statusDescription} />
 				<MetaSection {work} />
@@ -21,7 +21,7 @@
 	<div class="flex flex-col justify-center items-center h-full max-md:hidden">
 		{#if work.display === 'top'}
 			<div class="flex flex-col items-start w-full gap-10">
-				<SmartImageSeries additionalClasses="w-full" image={work.image} alt={work.title} interWidth={2000} />
+				<SmartImageSeries additionalClasses="w-full" image={work.image} alt={work.title} />
 				<div class="w-[500px] flex flex-col items-start gap-3">
 					<DescSection {work} {statusDescription} wide />
 					<MetaSection {work} />

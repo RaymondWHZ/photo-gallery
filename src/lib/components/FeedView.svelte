@@ -52,11 +52,9 @@
 <svelte:head>
 	{#if index > 0}
 		<link rel="preload" as="image" href={feed[index - 1].image + "&width=1"} />
-		<link rel="preload" as="image" href={feed[index - 1].image} />
 	{/if}
 	{#if index < feed.length - 1}
 		<link rel="preload" as="image" href={feed[index + 1].image + "&width=1"} />
-		<link rel="preload" as="image" href={feed[index + 1].image} />
 	{/if}
 </svelte:head>
 <div

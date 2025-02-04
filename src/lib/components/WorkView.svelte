@@ -11,7 +11,7 @@
 {#key work.id}
 	<div class="flex flex-col justify-center items-center h-full md:hidden">
 		<div class="flex flex-col items-start w-full gap-10">
-			<SmartImageSeries additionalClasses="w-full" image={work.image} alt={work.title} />
+			<SmartImageSeries additionalClasses="w-full" image={work.image} />
 			<div class="flex flex-col items-start gap-3">
 				<DescSection {work} {statusDescription} />
 				<MetaSection {work} />
@@ -21,7 +21,7 @@
 	<div class="flex flex-col justify-center items-center h-full max-md:hidden">
 		{#if work.display === 'top'}
 			<div class="flex flex-col items-start w-full gap-10">
-				<SmartImageSeries additionalClasses="w-full" image={work.image} alt={work.title} />
+				<SmartImageSeries additionalClasses="w-full" image={work.image} />
 				<div class="w-[500px] flex flex-col items-start gap-3">
 					<DescSection {work} {statusDescription} wide />
 					<MetaSection {work} />
@@ -30,7 +30,7 @@
 		{/if}
 		{#if work.display === 'left' || work.display === undefined}
 			<div class="flex flex-row items-end w-full gap-8 xl:gap-16">
-				<SmartImageSeries additionalClasses="flex-1" image={work.image} alt={work.title} />
+				<SmartImageSeries additionalClasses="flex-1" image={work.image} />
 				<div class="flex flex-col items-start gap-3">
 					<DescSection {work} {statusDescription} width="300" />
 					<MetaSection {work} />
@@ -43,7 +43,7 @@
 					<DescSection {work} {statusDescription} wide width="350" />
 					<MetaSection {work} />
 				</div>
-				<SmartImageSeries additionalClasses="flex-1" image={work.image} alt={work.title} />
+				<SmartImageSeries additionalClasses="flex-1" image={work.image} />
 			</div>
 		{/if}
 		{#if work.display === 'middle'}
@@ -51,7 +51,7 @@
 				<div class="flex flex-col items-start gap-3">
 					<DescSection {work} {statusDescription} width="280" />
 				</div>
-				<SmartImageSeries additionalClasses="flex-1" image={work.image} alt={work.title} />
+				<SmartImageSeries additionalClasses="flex-1" image={work.image} />
 				<div class="flex flex-col items-start justify-end gap-3 h-full">
 					<MetaSection {work} width="280" />
 				</div>
